@@ -1,5 +1,5 @@
 ﻿using Dominio.Entidades;
-using Infraestrutura.Repositorios.Interfaces.Comum;
+using Infraestrutura.Repositorios.Comum.Interfaces;
 
 namespace Dominio.Contratos.Repositorio
 {
