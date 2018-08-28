@@ -1,20 +1,19 @@
-{
+﻿{
   "version": "1.0.0-*",
-  "buildOptions": {
-    "emitEntryPoint": true
-  },
-
+  "testRunner": "mstest",
   "dependencies": {
     "Dominio": "1.0.0-0",
+    "dotnet-test-mstest": "1.1.2-preview",
     "Microsoft.NETCore.App": "1.1.0",
-    "NETStandard.Library": "1.6.1"
+    "MSTest.TestFramework": "1.0.8-rc2"
   },
-  "runtimes": {
-    "win7-x64": {}
-  },
+
   "frameworks": {
     "netcoreapp1.0": {
       "imports": "dnxcore50"
     }
+  },
+  "runtimes": {
+    "win7-x64": {}
   }
 }
