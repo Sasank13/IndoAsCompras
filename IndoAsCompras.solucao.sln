@@ -5,15 +5,15 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dominio", "Dominio", "{11BB1D89-136F-49A7-8BE9-BF588E0B6933}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoAsCompras.Dominio", "Dominio\IndoAsCompras.Dominio\IndoAsCompras.Dominio.csproj", "{88F4F8E5-0042-41C9-87D5-CE077DDEAA43}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoAsCompras.Dominio", "IndoAsCompras.Dominio\IndoAsCompras.Dominio.csproj", "{88F4F8E5-0042-41C9-87D5-CE077DDEAA43}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aplicacao", "Aplicacao", "{FA23900F-70E4-4D69-9CDB-55A3B8FD0CFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoAsCompras.Aplicacao", "Aplicacao\IndoAsCompras.Aplicacao\IndoAsCompras.Aplicacao.csproj", "{5A397357-C0B3-4724-A76E-4653DF9F2D7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoAsCompras.Aplicacao", "IndoAsCompras.Aplicacao\IndoAsCompras.Aplicacao.csproj", "{5A397357-C0B3-4724-A76E-4653DF9F2D7C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infraestrutura", "Infraestrutura", "{3B2F7E1E-FEA3-49D9-BF6A-052AC632014C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoAsCompras.Infraestrutura", "Infraestrutura\IndoAsCompras.Infraestrutura\IndoAsCompras.Infraestrutura.csproj", "{9AA3DF57-B7B6-4F62-A820-5A148FC2F8FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoAsCompras.Infraestrutura", "IndoAsCompras.Infraestrutura\IndoAsCompras.Infraestrutura.csproj", "{9AA3DF57-B7B6-4F62-A820-5A148FC2F8FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
