@@ -1,61 +1,50 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
 
-namespace Dominio.Entidades
+namespace IndoAsCompras.Dominio.Entidades
 {
-    public class Item
+    public class Categoria
     {
         #region Atributos
 
         private Nullable<long> id;
         private string nome;
-        private float quantidade;
-        private float precoUnitario;
-        private bool ehpromocao;
-        private TipoPromocao tipoPromocao;
-        private float subtotal;
 
-        //Relacionamentos
+        //1 Categoria por estar em muitos Itens da Lista (1:N)
 
-        private ListaDeCompra listaDeCompra;
-        private Mercado mercado;
-        private Categoria categoria;
-        private Unidade unidade;
-
+        private IList<Item> itensDaLista;
         #endregion
 
         #region Construtores
-        public Item()
+        public Categoria()
         {
-
+                
         }
 
-        public Item(Nullable<long> id,string nome,float quantidade,float precoUnitario,bool ehpromocao,
-            TipoPromocao tipoPromocao)
+        public Categoria(Nullable<long> id, string nome)
         {
             this.id = id;
             this.nome = nome;
-            this.quantidade = quantidade;
-            this.precoUnitario = precoUnitario;
-            this.ehpromocao = ehpromocao;
-            this.tipoPromocao = tipoPromocao;
-            this.subtotal = quantidade * precoUnitario;
         }
         #endregion
 
         #region Propriedades
-
         public virtual Nullable<long> Id
         {
             get
             {
-                return id;
+                return this.id;
             }
+
             set
             {
                 this.id = value;
             }
         }
-        
+
         public virtual string Nome
         {
             get
@@ -64,113 +53,19 @@ namespace Dominio.Entidades
             }
             set
             {
-                this.nome = value;
+                nome = value;
             }
         }
 
-        public virtual float Quantidade
+        public virtual IList<Item> ItensDaLista
         {
             get
             {
-                return quantidade;
+                return itensDaLista;
             }
             set
             {
-                this.quantidade = value;
-            }
-        }
-
-        public virtual float PrecoUnitario
-        {
-            get
-            {
-                return precoUnitario;
-            }
-            set
-            {
-                this.precoUnitario = value;
-            }
-        }
-
-        public virtual float Subtotal
-        {
-            get
-            {
-                subtotal = quantidade * precoUnitario;
-                return subtotal;
-            }
-            private set
-            {
-                subtotal = value;
-            }
-        }
-
-        public virtual bool EhPromocao
-        {
-            get
-            {
-                return ehpromocao;
-            }
-            set
-            {
-                ehpromocao = value;
-            }
-        }
-
-        public virtual TipoPromocao TipoPromocao
-        {
-            get
-            {
-                return TipoPromocao;
-            }
-            set
-            {
-                this.tipoPromocao = value;
-            }
-        }
-
-        public virtual ListaDeCompra ListaDeCompra
-        {
-            get
-            {
-                return listaDeCompra;
-            }
-            set
-            {
-                this.listaDeCompra = value;
-            }
-        }
-        public virtual Mercado Mercado
-        {
-            get
-            {
-                return mercado;
-            }
-            set
-            {
-                this.mercado = value;
-            }
-        }
-        public virtual Categoria Categoria
-        {
-            get
-            {
-                return categoria;
-            }
-            set
-            {
-                this.categoria = value;
-            }
-        }
-        public virtual Unidade Unidade
-        {
-            get
-            {
-                return unidade;
-            }
-            set
-            {
-                unidade = value;
+                this.itensDaLista = value;
             }
         }
         #endregion
@@ -182,7 +77,7 @@ namespace Dominio.Entidades
         #region Sobrescritas do Papai
 
         /// <summary>
-        /// Provê igualdade entre classes de mesmo tipo de Item
+        /// Provê igualdade entre classes de mesmo tipo de Categoria
         /// </summary>
         /// <param name="o">Objeto a ser verificada a igualdade</param>
         /// <returns>true => se for igual e false => se for diferente</returns>			
@@ -191,13 +86,13 @@ namespace Dominio.Entidades
             if (o.GetType().IsAssignableFrom(GetType()))
             {
                 BindingFlags visibilidadePermitida = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
-                FieldInfo[] classeLocal = typeof(Item).GetFields(visibilidadePermitida);
+                FieldInfo[] classeLocal = typeof(Categoria).GetFields(visibilidadePermitida);
                 FieldInfo[] classeExterna = o.GetType().GetFields(visibilidadePermitida);
 
                 int totalDeCamposLocais = classeLocal.Select(cl => cl.GetValue(this)).ToList().Count;
                 int totalDeCamposExternos = classeExterna.Select(ce => ce.GetValue(this)).ToList().Count;
 
-                var atributos = typeof(Item).GetFields(visibilidadePermitida).Select(u => u.GetValue(this)).ToList();
+                var atributos = typeof(Categoria).GetFields(visibilidadePermitida).Select(u => u.GetValue(this)).ToList();
 
                 if ((classeLocal != null && totalDeCamposLocais > 0) && classeExterna != null && totalDeCamposExternos > 0)
                 {
@@ -295,7 +190,7 @@ namespace Dominio.Entidades
 
         /// <summary>
         /// Mostra a saída formatada dos valores presentes
-        /// nos atributos de Item
+        /// nos atributos de Categoria
         /// </summary>
         /// <returns>Uma string contendo os valores dos atributos da Classe Incluindo seus relacionamentos</returns>
         public override string ToString()

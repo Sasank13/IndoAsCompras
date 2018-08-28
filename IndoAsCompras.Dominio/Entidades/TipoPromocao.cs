@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Aplicacao
+namespace IndoAsCompras.Dominio.Entidades
 {
-    public class Program
+    public enum TipoPromocao
     {
-        public static void Main(string[] args)
-        {
-        }
+        Encarte = 1,
+        Relampago = 2
     }
 }

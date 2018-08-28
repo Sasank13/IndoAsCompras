@@ -4,56 +4,60 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Dominio.Entidades
+namespace IndoAsCompras.Dominio.Entidades
 {
-    public class Categoria
+    public class ListaDeCompra
     {
         #region Atributos
 
         private Nullable<long> id;
-        private string nome;
+        private string observacao;
 
-        //1 Categoria por estar em muitos Itens da Lista (1:N)
-
+        //1 Lista de Compra têm N Itens (1-N)
         private IList<Item> itensDaLista;
+
         #endregion
 
         #region Construtores
-        public Categoria()
+
+        public ListaDeCompra()
         {
-                
+
         }
 
-        public Categoria(Nullable<long> id, string nome)
+        public ListaDeCompra(Nullable<long> id, string observacao)
         {
-            this.id = id;
-            this.nome = nome;
+           this.id = id;
+           this.observacao = observacao;
         }
+
         #endregion
 
         #region Propriedades
+
         public virtual Nullable<long> Id
         {
             get
             {
-                return this.id;
+                return id;
             }
 
             set
             {
-                this.id = value;
+                id = value;
             }
         }
 
-        public virtual string Nome
+        public virtual string Observacao
         {
             get
             {
-                return nome;
+                return observacao;
             }
+
             set
             {
-                nome = value;
+                observacao = value;
             }
         }
 
@@ -63,9 +67,10 @@ namespace Dominio.Entidades
             {
                 return itensDaLista;
             }
+
             set
             {
-                this.itensDaLista = value;
+                itensDaLista = value;
             }
         }
         #endregion
@@ -77,7 +82,7 @@ namespace Dominio.Entidades
         #region Sobrescritas do Papai
 
         /// <summary>
-        /// Provê igualdade entre classes de mesmo tipo de Categoria
+        /// Provê igualdade entre classes de mesmo tipo de ListaDeCompra
         /// </summary>
         /// <param name="o">Objeto a ser verificada a igualdade</param>
         /// <returns>true => se for igual e false => se for diferente</returns>			
@@ -86,13 +91,13 @@ namespace Dominio.Entidades
             if (o.GetType().IsAssignableFrom(GetType()))
             {
                 BindingFlags visibilidadePermitida = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
-                FieldInfo[] classeLocal = typeof(Categoria).GetFields(visibilidadePermitida);
+                FieldInfo[] classeLocal = typeof(ListaDeCompra).GetFields(visibilidadePermitida);
                 FieldInfo[] classeExterna = o.GetType().GetFields(visibilidadePermitida);
 
                 int totalDeCamposLocais = classeLocal.Select(cl => cl.GetValue(this)).ToList().Count;
                 int totalDeCamposExternos = classeExterna.Select(ce => ce.GetValue(this)).ToList().Count;
 
-                var atributos = typeof(Categoria).GetFields(visibilidadePermitida).Select(u => u.GetValue(this)).ToList();
+                var atributos = typeof(ListaDeCompra).GetFields(visibilidadePermitida).Select(u => u.GetValue(this)).ToList();
 
                 if ((classeLocal != null && totalDeCamposLocais > 0) && classeExterna != null && totalDeCamposExternos > 0)
                 {
@@ -142,10 +147,9 @@ namespace Dominio.Entidades
                     case "Byte":
                         resultado = 31 * resultado + Convert.ToInt16((byte.Parse(atributo.GetValue(this).ToString())));
                         break;
-                    /*case "char":
+                    case "char":
                         resultado = 31 * resultado + (char.Parse(atributo.GetValue(this).ToString()));
                         break;
-                    */
                     case "Short":
                         resultado = 31 * resultado + (short.Parse(atributo.GetValue(this).ToString()));
                         break;
@@ -190,7 +194,7 @@ namespace Dominio.Entidades
 
         /// <summary>
         /// Mostra a saída formatada dos valores presentes
-        /// nos atributos de Categoria
+        /// nos atributos de ListaDeCompra
         /// </summary>
         /// <returns>Uma string contendo os valores dos atributos da Classe Incluindo seus relacionamentos</returns>
         public override string ToString()

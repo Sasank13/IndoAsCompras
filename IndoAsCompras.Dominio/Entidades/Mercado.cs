@@ -4,35 +4,36 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Dominio.Entidades
+namespace IndoAsCompras.Dominio.Entidades
 {
-    public class Unidade
+    public class Mercado
     {
         #region Atributos
 
         private Nullable<long> id;
         private string nome;
+        private string localizacao;
 
-        //1 Unidade por estar em N itens da Lista
+        //1 Mercado pode estar presente em N Itens da Lista de Compras (1:N)
         private IList<Item> itensDaLista;
 
         #endregion
 
         #region Construtores
-        public Unidade()
+        public Mercado()
         {
 
         }
 
-        public Unidade(Nullable<long> id, string nome)
+        public Mercado(Nullable<long> id, string nome, string localizacao)
         {
             this.id = id;
             this.nome = nome;
+            this.localizacao = localizacao;
         }
         #endregion
 
         #region Propriedades
-
         public virtual Nullable<long> Id
         {
             get
@@ -41,7 +42,7 @@ namespace Dominio.Entidades
             }
             set
             {
-                id = value;
+                this.id = value;
             }
         }
 
@@ -51,11 +52,37 @@ namespace Dominio.Entidades
             {
                 return nome;
             }
+
             set
             {
-                nome = value;
+                this.nome = value;
             }
-        }        
+        }
+
+        public virtual string Localizacao
+        {
+            get
+            {
+                return localizacao;
+            }
+            set
+            {
+                this.localizacao = value;
+            }
+        }
+
+        public IList<Item> ItensDaLista
+        {
+            get
+            {
+                return itensDaLista;
+            }
+
+            set
+            {
+                this.itensDaLista = value;
+            }
+        }
         #endregion
 
         #region Métodos
@@ -65,7 +92,7 @@ namespace Dominio.Entidades
         #region Sobrescritas do Papai
 
         /// <summary>
-        /// Provê igualdade entre classes de mesmo tipo de Unidade
+        /// Provê igualdade entre classes de mesmo tipo de Mercado
         /// </summary>
         /// <param name="o">Objeto a ser verificada a igualdade</param>
         /// <returns>true => se for igual e false => se for diferente</returns>			
@@ -74,13 +101,13 @@ namespace Dominio.Entidades
             if (o.GetType().IsAssignableFrom(GetType()))
             {
                 BindingFlags visibilidadePermitida = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
-                FieldInfo[] classeLocal = typeof(Unidade).GetFields(visibilidadePermitida);
+                FieldInfo[] classeLocal = typeof(Mercado).GetFields(visibilidadePermitida);
                 FieldInfo[] classeExterna = o.GetType().GetFields(visibilidadePermitida);
 
                 int totalDeCamposLocais = classeLocal.Select(cl => cl.GetValue(this)).ToList().Count;
                 int totalDeCamposExternos = classeExterna.Select(ce => ce.GetValue(this)).ToList().Count;
 
-                var atributos = typeof(Unidade).GetFields(visibilidadePermitida).Select(u => u.GetValue(this)).ToList();
+                var atributos = typeof(Mercado).GetFields(visibilidadePermitida).Select(u => u.GetValue(this)).ToList();
 
                 if ((classeLocal != null && totalDeCamposLocais > 0) && classeExterna != null && totalDeCamposExternos > 0)
                 {
@@ -178,7 +205,7 @@ namespace Dominio.Entidades
 
         /// <summary>
         /// Mostra a saída formatada dos valores presentes
-        /// nos atributos de Unidade
+        /// nos atributos de Mercado
         /// </summary>
         /// <returns>Uma string contendo os valores dos atributos da Classe Incluindo seus relacionamentos</returns>
         public override string ToString()
