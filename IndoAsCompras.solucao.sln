@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dominio", "Dominio", "{11BB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoAsCompras.Dominio", "Dominio\IndoAsCompras.Dominio\IndoAsCompras.Dominio.csproj", "{88F4F8E5-0042-41C9-87D5-CE077DDEAA43}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aplicacao", "Aplicacao", "{FA23900F-70E4-4D69-9CDB-55A3B8FD0CFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndoAsCompras.Aplicacao", "Aplicacao\IndoAsCompras.Aplicacao\IndoAsCompras.Aplicacao.csproj", "{5A397357-C0B3-4724-A76E-4653DF9F2D7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,8 +36,21 @@ Global
 		{88F4F8E5-0042-41C9-87D5-CE077DDEAA43}.Release|x64.Build.0 = Release|x64
 		{88F4F8E5-0042-41C9-87D5-CE077DDEAA43}.Release|x86.ActiveCfg = Release|x86
 		{88F4F8E5-0042-41C9-87D5-CE077DDEAA43}.Release|x86.Build.0 = Release|x86
+		{5A397357-C0B3-4724-A76E-4653DF9F2D7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A397357-C0B3-4724-A76E-4653DF9F2D7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A397357-C0B3-4724-A76E-4653DF9F2D7C}.Debug|x64.ActiveCfg = Debug|x64
+		{5A397357-C0B3-4724-A76E-4653DF9F2D7C}.Debug|x64.Build.0 = Debug|x64
+		{5A397357-C0B3-4724-A76E-4653DF9F2D7C}.Debug|x86.ActiveCfg = Debug|x86
+		{5A397357-C0B3-4724-A76E-4653DF9F2D7C}.Debug|x86.Build.0 = Debug|x86
+		{5A397357-C0B3-4724-A76E-4653DF9F2D7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A397357-C0B3-4724-A76E-4653DF9F2D7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A397357-C0B3-4724-A76E-4653DF9F2D7C}.Release|x64.ActiveCfg = Release|x64
+		{5A397357-C0B3-4724-A76E-4653DF9F2D7C}.Release|x64.Build.0 = Release|x64
+		{5A397357-C0B3-4724-A76E-4653DF9F2D7C}.Release|x86.ActiveCfg = Release|x86
+		{5A397357-C0B3-4724-A76E-4653DF9F2D7C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{88F4F8E5-0042-41C9-87D5-CE077DDEAA43} = {11BB1D89-136F-49A7-8BE9-BF588E0B6933}
+		{5A397357-C0B3-4724-A76E-4653DF9F2D7C} = {FA23900F-70E4-4D69-9CDB-55A3B8FD0CFF}
 	EndGlobalSection
 EndGlobal
