@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IndoAsCompras.Dominio.Entidades
+namespace IndoAsCompras.Dominio.Modelo
 {
     public enum TipoPromocao
     {

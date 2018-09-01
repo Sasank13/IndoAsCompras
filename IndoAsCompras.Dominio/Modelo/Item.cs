@@ -1,36 +1,48 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace IndoAsCompras.Dominio.Entidades
+namespace IndoAsCompras.Dominio.Modelo
 {
-    public class ListaDeCompra
+    public class Item
     {
         #region Atributos
 
         private Nullable<long> id;
-        private string observacao;
+        private string nome;
+        private float quantidade;
+        private float precoUnitario;
+        private bool ehpromocao;
+        private TipoPromocao tipoPromocao;
+        private float subtotal;
 
-        //1 Lista de Compra têm N Itens (1-N)
-        private IList<Item> itensDaLista;
+        //Relacionamentos
+
+        private ListaDeCompra listaDeCompra;
+        private Mercado mercado;
+        private Categoria categoria;
+        private Unidade unidade;
 
         #endregion
 
         #region Construtores
-
-        public ListaDeCompra()
+        public Item()
         {
 
         }
 
-        public ListaDeCompra(Nullable<long> id, string observacao)
+        public Item(Nullable<long> id,string nome,float quantidade,float precoUnitario,bool ehpromocao,
+            TipoPromocao tipoPromocao)
         {
-           this.id = id;
-           this.observacao = observacao;
+            this.id = id;
+            this.nome = nome;
+            this.quantidade = quantidade;
+            this.precoUnitario = precoUnitario;
+            this.ehpromocao = ehpromocao;
+            this.tipoPromocao = tipoPromocao;
+            this.subtotal = quantidade * precoUnitario;
         }
-
         #endregion
 
         #region Propriedades
@@ -41,36 +53,127 @@ namespace IndoAsCompras.Dominio.Entidades
             {
                 return id;
             }
-
             set
             {
-                id = value;
+                this.id = value;
             }
         }
-
-        public virtual string Observacao
+        
+        public virtual string Nome
         {
             get
             {
-                return observacao;
+                return nome;
             }
-
             set
             {
-                observacao = value;
+                this.nome = value;
             }
         }
 
-        public virtual IList<Item> ItensDaLista
+        public virtual float Quantidade
         {
             get
             {
-                return itensDaLista;
+                return quantidade;
             }
-
             set
             {
-                itensDaLista = value;
+                this.quantidade = value;
+            }
+        }
+
+        public virtual float PrecoUnitario
+        {
+            get
+            {
+                return precoUnitario;
+            }
+            set
+            {
+                this.precoUnitario = value;
+            }
+        }
+
+        public virtual float Subtotal
+        {
+            get
+            {
+                subtotal = quantidade * precoUnitario;
+                return subtotal;
+            }
+            private set
+            {
+                subtotal = value;
+            }
+        }
+
+        public virtual bool EhPromocao
+        {
+            get
+            {
+                return ehpromocao;
+            }
+            set
+            {
+                ehpromocao = value;
+            }
+        }
+
+        public virtual TipoPromocao TipoPromocao
+        {
+            get
+            {
+                return TipoPromocao;
+            }
+            set
+            {
+                this.tipoPromocao = value;
+            }
+        }
+
+        public virtual ListaDeCompra ListaDeCompra
+        {
+            get
+            {
+                return listaDeCompra;
+            }
+            set
+            {
+                this.listaDeCompra = value;
+            }
+        }
+        public virtual Mercado Mercado
+        {
+            get
+            {
+                return mercado;
+            }
+            set
+            {
+                this.mercado = value;
+            }
+        }
+        public virtual Categoria Categoria
+        {
+            get
+            {
+                return categoria;
+            }
+            set
+            {
+                this.categoria = value;
+            }
+        }
+        public virtual Unidade Unidade
+        {
+            get
+            {
+                return unidade;
+            }
+            set
+            {
+                unidade = value;
             }
         }
         #endregion
@@ -82,7 +185,7 @@ namespace IndoAsCompras.Dominio.Entidades
         #region Sobrescritas do Papai
 
         /// <summary>
-        /// Provê igualdade entre classes de mesmo tipo de ListaDeCompra
+        /// Provê igualdade entre classes de mesmo tipo de Item
         /// </summary>
         /// <param name="o">Objeto a ser verificada a igualdade</param>
         /// <returns>true => se for igual e false => se for diferente</returns>			
@@ -91,13 +194,13 @@ namespace IndoAsCompras.Dominio.Entidades
             if (o.GetType().IsAssignableFrom(GetType()))
             {
                 BindingFlags visibilidadePermitida = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
-                FieldInfo[] classeLocal = typeof(ListaDeCompra).GetFields(visibilidadePermitida);
+                FieldInfo[] classeLocal = typeof(Item).GetFields(visibilidadePermitida);
                 FieldInfo[] classeExterna = o.GetType().GetFields(visibilidadePermitida);
 
                 int totalDeCamposLocais = classeLocal.Select(cl => cl.GetValue(this)).ToList().Count;
                 int totalDeCamposExternos = classeExterna.Select(ce => ce.GetValue(this)).ToList().Count;
 
-                var atributos = typeof(ListaDeCompra).GetFields(visibilidadePermitida).Select(u => u.GetValue(this)).ToList();
+                var atributos = typeof(Item).GetFields(visibilidadePermitida).Select(u => u.GetValue(this)).ToList();
 
                 if ((classeLocal != null && totalDeCamposLocais > 0) && classeExterna != null && totalDeCamposExternos > 0)
                 {
@@ -147,9 +250,10 @@ namespace IndoAsCompras.Dominio.Entidades
                     case "Byte":
                         resultado = 31 * resultado + Convert.ToInt16((byte.Parse(atributo.GetValue(this).ToString())));
                         break;
-                    case "char":
+                    /*case "char":
                         resultado = 31 * resultado + (char.Parse(atributo.GetValue(this).ToString()));
                         break;
+                    */
                     case "Short":
                         resultado = 31 * resultado + (short.Parse(atributo.GetValue(this).ToString()));
                         break;
@@ -194,7 +298,7 @@ namespace IndoAsCompras.Dominio.Entidades
 
         /// <summary>
         /// Mostra a saída formatada dos valores presentes
-        /// nos atributos de ListaDeCompra
+        /// nos atributos de Item
         /// </summary>
         /// <returns>Uma string contendo os valores dos atributos da Classe Incluindo seus relacionamentos</returns>
         public override string ToString()

@@ -1,5 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <ItemGroup>
+    <ProjectReference Include="..\IndoAsCompras.Dominio\IndoAsCompras.Dominio.csproj" />
+    <ProjectReference Include="..\IndoAsCompras.CrossCutting\IndoAsCompras.CrossCutting.DTO\IndoAsCompras.CrossCutting.DTO.csproj" />
+    <ProjectReference Include="..\IndoAsCompras.CrossCutting\IndoAsCompras.CrossCutting.Presenter\IndoAsCompras.CrossCutting.Presenter.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
