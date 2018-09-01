@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace IndoAsCompras.Dominio.Entidades
+namespace IndoAsCompras.Dominio.Modelo
 {
     public class Categoria
     {
